@@ -1,0 +1,1 @@
+docker build -t cyijun/standalone_spark_3.1.1:latest -f ./Dockerfile.standalone_spark_3.1.1 .
