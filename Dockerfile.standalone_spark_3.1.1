@@ -40,11 +40,11 @@ ENV PATH="${PATH}:${SPARK_HOME}/bin:${SPARK_HOME}/sbin:${HADOOP_HOME}/bin:${HADO
 USER app
 WORKDIR /app
 
+ENV PATH="${PATH}:/app/miniconda3/bin"
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py39_24.4.0-0-Linux-x86_64.sh && \
     bash ./Miniconda3-py39_24.4.0-0-Linux-x86_64.sh -b && \
     rm -rf ./Miniconda3-py39_24.4.0-0-Linux-x86_64.sh && \
     conda init bash
-ENV PATH="${PATH}:/app/miniconda3/bin"
 ENV PYSPARK_PYTHON=/app/miniconda3/bin/python
 ENV PYSPARK_DRIVER_PYTHON=/app/miniconda3/bin/python
 RUN pip install -r /opt/requirements.txt && \
