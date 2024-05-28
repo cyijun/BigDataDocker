@@ -4,3 +4,6 @@ pandas
 tabulate
 scipy
 scikit-learn
+paho-mqtt
+pyarrow
+seaborn

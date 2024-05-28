@@ -13,7 +13,7 @@ COPY requirements.txt /opt
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone && \
     apt-get update && \
-    apt-get install -y apt-transport-https ca-certificates wget ssh rsync openjdk-8-jdk python3-pip && \
+    apt-get install -y apt-transport-https ca-certificates wget ssh rsync openjdk-8-jdk build-essentials && \
     wget https://archive.apache.org/dist/spark/spark-3.1.1/spark-3.1.1-bin-hadoop2.7.tgz && \
     wget https://archive.apache.org/dist/hadoop/common/hadoop-2.7.4/hadoop-2.7.4.tar.gz && \
     wget https://downloads.lightbend.com/scala/2.12.19/scala-2.12.19.deb && \
@@ -40,5 +40,12 @@ ENV PATH="${PATH}:${SPARK_HOME}/bin:${SPARK_HOME}/sbin:${HADOOP_HOME}/bin:${HADO
 USER app
 WORKDIR /app
 
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py39_24.4.0-0-Linux-x86_64.sh && \
+    bash ./Miniconda3-py39_24.4.0-0-Linux-x86_64.sh -b && \
+    rm -rf ./Miniconda3-py39_24.4.0-0-Linux-x86_64.sh && \
+    conda init bash
+ENV PATH="${PATH}:/app/miniconda3/bin"
+ENV PYSPARK_PYTHON=/app/miniconda3/bin/python
+ENV PYSPARK_DRIVER_PYTHON=/app/miniconda3/bin/python
 RUN pip install -r /opt/requirements.txt && \
     pip cache purge

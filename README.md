@@ -9,7 +9,7 @@ Docker Image of bigdata stack.
 |Ubuntu|`22.04`|
 |OpenJDK|`8`|
 |Scala|`2.12.19`|
-|Python|`3.10`|
+|Python|`3.9`|
 |Spark|`3.1.1`|
 |Hadoop|`2.7.4`|
 |Python Modules|[requirements](requirements.txt)|
