@@ -15,9 +15,9 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shangh
     apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y apt-transport-https ca-certificates wget ssh rsync openjdk-8-jdk build-essential && \
-    wget https://archive.apache.org/dist/spark/spark-3.4.3/spark-3.4.3-bin-hadoop3.tgz && \
-    wget https://archive.apache.org/dist/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz && \
-    wget https://downloads.lightbend.com/scala/2.12.19/scala-2.12.19.deb && \
+    wget -q https://archive.apache.org/dist/spark/spark-3.4.3/spark-3.4.3-bin-hadoop3.tgz && \
+    wget -q https://archive.apache.org/dist/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz && \
+    wget -q https://downloads.lightbend.com/scala/2.12.19/scala-2.12.19.deb && \
     dpkg -i scala-2.12.19.deb && \
     tar -xf spark-3.4.3-bin-hadoop3.tgz && \
     tar -xf hadoop-3.3.6.tar.gz && \
@@ -42,7 +42,7 @@ USER app
 WORKDIR /app
 
 ENV PATH="${PATH}:/app/miniconda3/bin"
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py39_24.4.0-0-Linux-x86_64.sh && \
+RUN wget -q https://repo.anaconda.com/miniconda/Miniconda3-py39_24.4.0-0-Linux-x86_64.sh && \
     bash ./Miniconda3-py39_24.4.0-0-Linux-x86_64.sh -b && \
     rm -rf ./Miniconda3-py39_24.4.0-0-Linux-x86_64.sh && \
     conda init bash
