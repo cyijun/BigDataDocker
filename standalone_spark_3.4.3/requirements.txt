@@ -1,0 +1,9 @@
+pyspark==3.4.3
+numpy
+pandas
+tabulate
+scipy
+scikit-learn
+paho-mqtt
+pyarrow
+seaborn

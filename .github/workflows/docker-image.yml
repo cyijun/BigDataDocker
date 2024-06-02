@@ -37,8 +37,8 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v5
       with:
-        context: .
-        file: Dockerfile.standalone_spark_3.1.1
+        context: standalone_spark_3.1.1
+        file: standalone_spark_3.1.1/Dockerfile
         build-args: |
           BUILD_DATE=${{ steps.vars.outputs.build_date }}
           BUILD_VERSION=${{ steps.vars.outputs.build_version }}
@@ -47,3 +47,18 @@ jobs:
           cyijun/bigdata_dockers:standalone_spark_3.1.1-latest
           cyijun/bigdata_dockers:standalone_spark_3.1.1-${{ steps.vars.outputs.build_version }}
         platforms: linux/amd64
+
+    - name: Build and push 2
+      uses: docker/build-push-action@v5
+      with:
+        context: standalone_spark_3.4.3
+        file: standalone_spark_3.4.3/Dockerfile
+        build-args: |
+          BUILD_DATE=${{ steps.vars.outputs.build_date }}
+          BUILD_VERSION=${{ steps.vars.outputs.build_version }}
+        push: true
+        tags: |
+          cyijun/bigdata_dockers:standalone_spark_3.4.3-latest
+          cyijun/bigdata_dockers:standalone_spark_3.4.3-${{ steps.vars.outputs.build_version }}
+        platforms: linux/amd64
+

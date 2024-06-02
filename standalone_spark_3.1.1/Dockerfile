@@ -13,6 +13,7 @@ COPY requirements.txt /opt
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone && \
     apt-get update && \
+    apt-get upgrade -y && \
     apt-get install -y apt-transport-https ca-certificates wget ssh rsync openjdk-8-jdk build-essential && \
     wget https://archive.apache.org/dist/spark/spark-3.1.1/spark-3.1.1-bin-hadoop2.7.tgz && \
     wget https://archive.apache.org/dist/hadoop/common/hadoop-2.7.4/hadoop-2.7.4.tar.gz && \
